@@ -30,9 +30,6 @@
     <ClCompile Include="Garden.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grden.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Books.h">

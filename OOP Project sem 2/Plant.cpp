@@ -1,39 +1,93 @@
 #include "Plant.h"
 #include <iostream>
 
-Plant::Plant(const string& imageFile) : growthScale(1.0f) {
-    if (!plantTexture.loadFromFile(imageFile)) {
-        cerr << "Failed to load plant image." << endl;
+Plant::Plant() 
+{
+    size = 0.01f;
+}
+
+void Plant::setThePlant(const string& filename) 
+{
+    if (!plantImage.loadFromFile(filename)) {
+        cerr << "Could not load: " << filename << endl;
     }
-    plantSprite.setTexture(plantTexture);
-    plantSprite.setScale(growthScale, growthScale);
+    plantAppearance.setTexture(plantImage);
+    plantAppearance.setScale(size, size);
 }
 
-void Plant::setPosition(float x, float y) {
-    plantSprite.setPosition(x, y);
+void Plant::setPosition(float x, float y) 
+{
+    posX = x;
+    posY = y;
+    plantAppearance.setPosition(posX, posY);
 }
 
-void Plant::draw(sf::RenderWindow& window) {
-    window.draw(plantSprite);
+void Plant::draw(RenderWindow& window) 
+{
+    window.draw(plantAppearance);
 }
 
-void Plant::grow() {
-    growthScale += 0.05f; // increase growth scale
-    plantSprite.setScale(growthScale, growthScale);
-}
-
-void Plant::updateMood(int finishedBooks) {
-    if (finishedBooks >= 5) {
-        plantSprite.setColor(sf::Color::Green); // healthy plant
+void Plant::updateGrowth(int pagesRead, int totalPages) 
+{
+    int ReadPercent = 0;
+    if (totalPages != 0)
+    {
+        ReadPercent = (pagesRead * 100) / totalPages;
     }
-    else if (finishedBooks >= 2) {
-        plantSprite.setColor(sf::Color(150, 255, 150)); // medium mood
+    if (ReadPercent == 100)
+    {
+        size = 0.4f;
     }
-    else {
-        plantSprite.setColor(sf::Color(200, 200, 200)); // dull for low progress
+    else if (ReadPercent >= 90)
+    {
+        size = 0.2f;
     }
+    else if (ReadPercent >= 70)
+    {
+        size = 0.1f;
+    }
+    else if (ReadPercent >= 50)
+    {
+        size = 0.05f;
+    }
+    else
+    {
+        size = 0.03f;
+    }
+
+    plantAppearance.setScale(size, size); 
 }
 
-sf::FloatRect Plant::getBounds() const {
-    return plantSprite.getGlobalBounds();
+//derived class's constructors
+//no implementation in them rn
+Flower::Flower() : Plant() {}
+Tree::Tree() : Plant() {}
+Vine::Vine() : Plant() {}
+
+//overloading this for the derived class
+void Flower::setThePlant()
+{
+    if (!plantImage.loadFromFile("flower.png")) {
+        cerr << "Could not load: " << "flower.png" << endl;
+    }
+    plantAppearance.setTexture(plantImage);
+    plantAppearance.setScale(size, size);
+}
+
+void Tree::setThePlant()
+{
+    if (!plantImage.loadFromFile("flower.png")) {
+        cerr << "Could not load: " << "flower.png" << endl;
+    }
+    plantAppearance.setTexture(plantImage);
+    plantAppearance.setScale(size, size);
+}
+
+void Vine::setThePlant()
+{
+    if (!plantImage.loadFromFile("vine.png")) {
+        cerr << "Could not load: " << "vine.png" << endl;
+    }
+    plantAppearance.setTexture(plantImage);
+    plantAppearance.setScale(size, size);
 }

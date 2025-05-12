@@ -136,7 +136,6 @@
     <ClCompile Include="Books.cpp" />
     <ClCompile Include="BookPlantPair.h" />
     <ClCompile Include="Garden.cpp" />
-    <ClCompile Include="Grden.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Plant.cpp" />
   </ItemGroup>
