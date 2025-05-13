@@ -1,6 +1,2 @@
-﻿  Books.cpp
-C:\Users\nasir\source\repos\OOP Project sem 2\OOP Project sem 2\Books.cpp(101,21): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-  Generating Code...
-C:\Users\nasir\source\repos\OOP Project sem 2\OOP Project sem 2\Books.cpp(103,1): warning C4715: 'Books::getReadingProgress': not all control paths return a value
+﻿  BookPlantPair.cpp
   OOP Project sem 2.vcxproj -> C:\Users\nasir\source\repos\OOP Project sem 2\Debug\OOP Project sem 2.exe

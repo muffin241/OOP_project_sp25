@@ -77,7 +77,7 @@ void Flower::setThePlant()
 void Tree::setThePlant()
 {
     if (!plantImage.loadFromFile("flower.png")) {
-        cerr << "Could not load: " << "flower.png" << endl;
+        cerr << "Could not load: " << "tree.png" << endl;
     }
     plantAppearance.setTexture(plantImage);
     plantAppearance.setScale(size, size);

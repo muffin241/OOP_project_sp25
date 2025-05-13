@@ -9,6 +9,7 @@
 #include "Books.h"
 #include "Plant.h"
 #include "BookPlantPair.h"
+#include "Garden.h"
 using namespace std;
 using namespace sf;
 
@@ -20,35 +21,38 @@ int main()
         return -1;
     }
 
-   //creating window
-    RenderWindow window(VideoMode(800, 600), "Book Plant Tracker");
+    //creating window
+    RenderWindow window(VideoMode(1500, 900), "My Reading Bloom");
 
-   //creating objects
-    Fantasy* fantasyBook = new Fantasy("The Hobbit", "Tolkien", 300, 100, "Quote", false, 1, 5);
-    Mystery* mysteryBook = new Mystery("Sherlock Holmes", "Arthur Conan Doyle", 250, 50, "Another quote", false, 2, 4);
+    // Create Garden
+    Garden myGarden(3);
 
-    //creating the plants for them
-    Flower* flower = new Flower();
-    Tree* tree = new Tree();
+    // Create derived book types
+    Books* book1 = new Fantasy("The Hobbit", "J.R.R. Tolkien", 310, 50, "In a hole in the ground there lived a hobbit.", false, 1, 5);
+    Books* book2 = new Mystery("The Hound of the Baskervilles", "Arthur Conan Doyle", 256, 180, "The world is full of obvious things.", false, 2, 4);
+    Books* book3 = new CrimeFiction("Gone Girl", "Gillian Flynn", 422, 422, "Love makes you want to be a better man. But maybe love, real love, also gives you permission to just be the man you are.", true, 3, 5);
 
-    flower->setThePlant();
-    tree->setThePlant();
+    // Create plants
+    Plant* plant1 = new Plant();
+    Plant* plant2 = new Plant();
+    Plant* plant3 = new Plant();
 
-    flower->setPosition(500, 100);
-    tree->setPosition(500, 300);
+    // Create BookPlantPairs
+    BookPlantPair* pair1 = new BookPlantPair(book1, plant1);
+    BookPlantPair* pair2 = new BookPlantPair(book2, plant2);
+    BookPlantPair* pair3 = new BookPlantPair(book3, plant3);
 
-    //printing book's data on terminal
-    fantasyBook->display();
-    mysteryBook->display();
+    // Add to Garden
+    myGarden.addPair(pair1);
+    myGarden.addPair(pair2);
+    myGarden.addPair(pair3);
 
-    //creating pairs
-    BookPlantPair pair1(fantasyBook, flower);
-    BookPlantPair pair2(mysteryBook, tree);
+    // Simulate progress updates
+    myGarden.updateReading(100, 0);  // now Hobbit has 100 read
+    myGarden.updateReading(256, 1);  // now Mystery book finished
+    myGarden.updateReading(422, 2);  // already finished
 
-    //updating
-    pair1.updateProgress(100); 
-    pair2.updateProgress(120); 
-
+    // SFML window loop
     while (window.isOpen()) {
         Event event;
         while (window.pollEvent(event)) {
@@ -57,21 +61,12 @@ int main()
         }
 
         window.clear(Color::White);
-
-        pair1.display(window, font);
-        pair1.displayProgressBar(window);
-
-        pair2.display(window, font);
-        pair2.displayProgressBar(window);
-
+        myGarden.display(window, font);
         window.display();
     }
 
-    // Cleanup
-    delete fantasyBook;
-    delete mysteryBook;
-    delete flower;
-    delete tree;
-
     return 0;
+
+
+
 }

@@ -11,7 +11,12 @@ private:
 public:
 	BookPlantPair(Books* , Plant* );
 	void updateProgress(int );
-	void display(RenderWindow&, Font&);
-	void displayProgressBar(RenderWindow&);
+	void display(RenderWindow&, Font&, float);
+	void displayProgressBar(RenderWindow&, float);
 	bool compareProgress(const BookPlantPair& )const ;
+	~BookPlantPair()
+	{
+		delete book;
+		delete plant;
+	}
 };
