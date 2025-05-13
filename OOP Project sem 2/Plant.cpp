@@ -6,10 +6,10 @@ Plant::Plant()
     size = 0.02f;
 }
 
-void Plant::setThePlant(const string& filename) 
+void Plant::setThePlant() 
 {
-    if (!plantImage.loadFromFile(filename)) {
-        cerr << "Could not load: " << filename << endl;
+    if (!plantImage.loadFromFile("flower.png")) {
+        cerr << "Could not load default: " << "flower.png" << endl;
     }
     plantAppearance.setTexture(plantImage);
     plantAppearance.setScale(size, size);
@@ -76,7 +76,7 @@ void Flower::setThePlant()
 
 void Tree::setThePlant()
 {
-    if (!plantImage.loadFromFile("flower.png")) {
+    if (!plantImage.loadFromFile("tree.png")) {
         cerr << "Could not load: " << "tree.png" << endl;
     }
     plantAppearance.setTexture(plantImage);

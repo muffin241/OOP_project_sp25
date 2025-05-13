@@ -27,6 +27,6 @@ void Garden::display(RenderWindow& window, Font& font)
 	float offsetY = 0.0f;
 	for (int i = 0; i < current; i++) {
 		pairs[i]->display(window, font, offsetY);
-		offsetY += 300; 
+		offsetY += 250; 
 	}
 }

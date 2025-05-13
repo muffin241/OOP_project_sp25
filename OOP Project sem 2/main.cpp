@@ -24,35 +24,46 @@ int main()
     //creating window
     RenderWindow window(VideoMode(1500, 900), "My Reading Bloom");
 
-    // Create Garden
+    //create the beautifullll garden
     Garden myGarden(3);
 
-    // Create derived book types
+   //create derived books
     Books* book1 = new Fantasy("The Hobbit", "J.R.R. Tolkien", 310, 50, "In a hole in the ground there lived a hobbit.", false, 1, 5);
-    Books* book2 = new Mystery("The Hound of the Baskervilles", "Arthur Conan Doyle", 256, 180, "The world is full of obvious things.", false, 2, 4);
-    Books* book3 = new CrimeFiction("Gone Girl", "Gillian Flynn", 422, 422, "Love makes you want to be a better man. But maybe love, real love, also gives you permission to just be the man you are.", true, 3, 5);
+    Books* book2 = new Poetry("The Hound of the Baskervilles", "Arthur Conan Doyle", 256, 180, "The world is full of obvious things.", false, 2, 4);
+    Books* book3 = new Nonfiction("Gone Girl", "Gillian Flynn", 422, 422, "Love makes you want to be a better man. But maybe love, real love, also gives you permission to just be the man you are.", true, 3, 5);
 
-    // Create plants
-    Plant* plant1 = new Plant();
-    Plant* plant2 = new Plant();
-    Plant* plant3 = new Plant();
-
-    // Create BookPlantPairs
+    //create plants
+    Plant* plant1 = new Flower();
+    plant1->setThePlant();
+    Plant* plant2 = new Vine();
+    plant2->setThePlant();
+    Plant* plant3 = new Tree();
+    plant3->setThePlant();
+   //create pairs 
     BookPlantPair* pair1 = new BookPlantPair(book1, plant1);
     BookPlantPair* pair2 = new BookPlantPair(book2, plant2);
     BookPlantPair* pair3 = new BookPlantPair(book3, plant3);
 
-    // Add to Garden
+    //add pairs to garden
     myGarden.addPair(pair1);
     myGarden.addPair(pair2);
     myGarden.addPair(pair3);
 
-    // Simulate progress updates
-    myGarden.updateReading(100, 0);  // now Hobbit has 100 read
-    myGarden.updateReading(256, 1);  // now Mystery book finished
-    myGarden.updateReading(422, 2);  // already finished
+    //print book's details
+    book1->display();
+    book2->display();
+    book3->display();
+    //update
+    myGarden.updateReading(100, 0);  
+    myGarden.updateReading(256, 1);  
+    myGarden.updateReading(422, 2);  
 
-    // SFML window loop
+    //print book's details
+    book1->display();
+    book2->display();
+    book3->display();
+
+    //SFML window loop
     while (window.isOpen()) {
         Event event;
         while (window.pollEvent(event)) {

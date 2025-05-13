@@ -35,6 +35,10 @@ bool BookPlantPair::compareProgress(const BookPlantPair& second)const
 
 void BookPlantPair::display(RenderWindow& window, Font& font, float offsetY)
 {
+    //plant
+    plant->setPosition(200, offsetY + 30);
+    plant->draw(window);
+
     //defining the color to use
     sf::Color pastelPurple(177, 156, 217);
 
@@ -42,33 +46,29 @@ void BookPlantPair::display(RenderWindow& window, Font& font, float offsetY)
     Text titleText, authorText, genreText;
     titleText.setFont(font);
     titleText.setString("Title: " + book->getTitle());
-    titleText.setCharacterSize(16);
-    titleText.setFillColor(pastelPurple);
-    titleText.setPosition(50, 50 + offsetY);  //adjusting vertical position with offset y
+    titleText.setCharacterSize(20);
+    titleText.setFillColor(sf::Color::Black);
+    titleText.setPosition(50, offsetY + 10);  //adjusting vertical position with offset y
 
     authorText.setFont(font);
     authorText.setString("Author: " + book->getAuthor());
-    authorText.setCharacterSize(16);
+    authorText.setCharacterSize(18);
     authorText.setFillColor(pastelPurple);
-    authorText.setPosition(50, 100 + offsetY);  //adjusting vertical position with offset y
+    authorText.setPosition(50, 40 + offsetY);  //adjusting vertical position with offset y
 
     genreText.setFont(font);
     genreText.setString("Genre: " + book->getGenre());
-    genreText.setCharacterSize(16);
+    genreText.setCharacterSize(18);
     genreText.setFillColor(pastelPurple);
-    genreText.setPosition(50, 150 + offsetY);  //adjusting vertical position with offset y
+    genreText.setPosition(50, 70 + offsetY);  //adjusting vertical position with offset y
 
     //draw texts on window
     window.draw(titleText);
     window.draw(authorText);
     window.draw(genreText);
-
-    //now align the plant and progress bar
-    plant->setPosition(50, 20);  //adjusting vertical position with offset y
-    plant->draw(window);
-
-    //adjust the progress bar's Y position as well
-    displayProgressBar(window, 50 + offsetY);
+    
+    //progress bars
+    displayProgressBar(window, offsetY);
 }
 
 void BookPlantPair::displayProgressBar(RenderWindow& window, float offsetY)
@@ -80,7 +80,7 @@ void BookPlantPair::displayProgressBar(RenderWindow& window, float offsetY)
     float barWidth = 200.0f;
     float barHeight = 20.0f;
     float barXPos = 50.0f;
-    float barYPos = 400.0f + offsetY;  //adjusting vertical position with offset y
+    float barYPos = 180.0f + offsetY;  //adjusting vertical position with offset y
 
     //get float progress ratio while avoiding undefined conditions
     float progressRatio = 0.0f;

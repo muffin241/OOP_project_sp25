@@ -16,7 +16,7 @@ protected:
 	float posY;
 public:
 	Plant();
-	void setThePlant(const string&);
+	virtual void setThePlant();
 	void setPosition(float, float);
 	void draw(RenderWindow&);
 	void updateGrowth(int, int);
