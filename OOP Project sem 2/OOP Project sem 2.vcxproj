@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BookPlantPair.cpp" />
     <ClCompile Include="Books.cpp" />
     <ClCompile Include="BookPlantPair.h" />
     <ClCompile Include="Garden.cpp" />

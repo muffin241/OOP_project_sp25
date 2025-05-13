@@ -6,7 +6,7 @@ using namespace std;
 
 //constructors
 //DEFAULT AND PARAMETRISED CONST FOR BOOKS
-Books::Books(string ttl = { " " }, string writer = { " " }, int totalP = 0, int Pgsread = 0, string favLine = { " " }, bool isFin = 0, int ID = 0, int bookR = 0)
+Books::Books(string ttl = " ", string writer = " ", int totalP = 0, int Pgsread = 0, string favLine = " ", bool isFin = 0, int ID = 0, int bookR = 0)
 {
 	title = ttl;
 	author = writer;
@@ -75,19 +75,24 @@ string Books::getfavQuote()
 {
 	return favQuote;
 }
-
+//setter
+void Books::UpdateReadPages(int pages)
+{
+	if (pages <= totalPages && pages > 0)
+	{
+		PagesRead = pages;
+	}
+}
 
 //functions
 //update read pages
-void Books::virtualPages(int pages)
-{
-	PagesRead = pages;
-}
+
 void Books::markAsFinished()
 {
 	isFinished = true;
 	PagesRead = totalPages;
 }
+
 //get progress
 float Books::getReadingProgress()
 {
@@ -136,7 +141,7 @@ string CrimeFiction::getGenre()const
 //display
 void Books::display()
 {
-	cout << bookId << ": '" << title << "' is written by " << author << ". You have read " << PagesRead << " of the " << totalPages << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << title << "' is written by " << author << ". You have read " << PagesRead << " of the " << totalPages << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << favQuote << endl;
@@ -145,7 +150,7 @@ void Books::display()
 
 void Fiction::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;
@@ -154,7 +159,7 @@ void Fiction::display()
 
 void Nonfiction::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on non-fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on non-fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;
@@ -163,7 +168,7 @@ void Nonfiction::display()
 
 void Poetry::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on poetry. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on poetry. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;
@@ -172,7 +177,7 @@ void Poetry::display()
 
 void Fantasy::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on fantasy. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on fantasy. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;
@@ -181,7 +186,7 @@ void Fantasy::display()
 
 void Mystery::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on mystery. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on mystery. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;
@@ -190,7 +195,7 @@ void Mystery::display()
 
 void ScienceFiction::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on science fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on science fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;
@@ -199,7 +204,7 @@ void ScienceFiction::display()
 
 void CrimeFiction::display()
 {
-	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on crime fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ");
+	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on crime fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
 	{
 		cout << "You gave the book " << bookRating << " stars. Your favourite quote is: " << getfavQuote() << endl;

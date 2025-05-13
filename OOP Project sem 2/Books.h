@@ -26,12 +26,13 @@ public:
 	int gettotalPages();
 	int getPagesRead();
 	string getfavQuote();
-
+	//setter
+	void UpdateReadPages(int);
 
 	//pure virtual func to get genre
 	virtual string getGenre()const = 0;
 	
-	void virtualPages(int);
+	
 	void markAsFinished();
 
 	float getReadingProgress();

@@ -8,88 +8,70 @@
 
 #include "Books.h"
 #include "Plant.h"
+#include "BookPlantPair.h"
 using namespace std;
 using namespace sf;
 
 int main()
 {
-   
     Font font;
     if (!font.loadFromFile("PlayfairDisplay-Regular.otf")) {
         cout << "Error loading font!" << endl;
         return -1;
     }
 
-    // Create a Fantasy book
-    Fantasy myBook("The Hobbit", "J.R.R. Tolkien", 310, 150, "In a hole in the ground there lived a hobbit.", false, 1, 5);
+   //creating window
+    RenderWindow window(VideoMode(800, 600), "Book Plant Tracker");
 
-    // Create a plant for Fantasy books
-    Flower myPlant;
-    myPlant.setThePlant( ); 
-    myPlant.setPosition(100, 250);     // Positioning the plant
-    myPlant.updateGrowth(myBook.getPagesRead(), myBook.gettotalPages());
+   //creating objects
+    Fantasy* fantasyBook = new Fantasy("The Hobbit", "Tolkien", 300, 100, "Quote", false, 1, 5);
+    Mystery* mysteryBook = new Mystery("Sherlock Holmes", "Arthur Conan Doyle", 250, 50, "Another quote", false, 2, 4);
 
-    RenderWindow window(VideoMode(1000, 1000), "Book Tracker");
+    //creating the plants for them
+    Flower* flower = new Flower();
+    Tree* tree = new Tree();
 
-    Text titleText, authorText, genreText;
+    flower->setThePlant();
+    tree->setThePlant();
 
-    titleText.setFont(font);
-    titleText.setString("Title: " + myBook.getTitle());
-    titleText.setCharacterSize(24);
-    titleText.setFillColor(Color::Black);
-    titleText.setPosition(50, 50);
+    flower->setPosition(500, 100);
+    tree->setPosition(500, 300);
 
-    authorText.setFont(font);
-    authorText.setString("Author: " + myBook.getAuthor());
-    authorText.setCharacterSize(24);
-    authorText.setFillColor(Color::Black);
-    authorText.setPosition(50, 100);
+    //printing book's data on terminal
+    fantasyBook->display();
+    mysteryBook->display();
 
-    genreText.setFont(font);
-    genreText.setString("Genre: " + myBook.getGenre());
-    genreText.setCharacterSize(24);
-    genreText.setFillColor(Color::Black);
-    genreText.setPosition(50, 150);
+    //creating pairs
+    BookPlantPair pair1(fantasyBook, flower);
+    BookPlantPair pair2(mysteryBook, tree);
 
-    while (window.isOpen())
-    {
+    //updating
+    pair1.updateProgress(100); 
+    pair2.updateProgress(120); 
+
+    while (window.isOpen()) {
         Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             if (event.type == Event::Closed)
                 window.close();
         }
 
         window.clear(Color::White);
-        window.draw(titleText);
-        window.draw(authorText);
-        window.draw(genreText);
-        myPlant.draw(window); // draw plant
+
+        pair1.display(window, font);
+        pair1.displayProgressBar(window);
+
+        pair2.display(window, font);
+        pair2.displayProgressBar(window);
+
         window.display();
     }
 
+    // Cleanup
+    delete fantasyBook;
+    delete mysteryBook;
+    delete flower;
+    delete tree;
 
-
-    //// Creating objects using the derived classes
-    //Fantasy fantasyBook("The Hobbit", "J.R.R. Tolkien", 310, 200, "Not all those who wander are lost.", false, 1, 5);
-    //Mystery mysteryBook("The Girl with the Dragon Tattoo", "Stieg Larsson", 465, 465, "What she had realized was that love was that moment.", true, 2, 4);
-    //Poetry poetryBook("Milk and Honey", "Rupi Kaur", 204, 80, "what is stronger / than the human heart / which shatters over and over", false, 3, 3);
-
-    //// Displaying details
-    //cout << "Genre: " << fantasyBook.getGenre() << endl;
-    //fantasyBook.display();
-    //cout << endl;
-
-    //cout << "Genre: " << mysteryBook.getGenre() << endl;
-    //mysteryBook.display();
-    //cout << endl;
-
-    //cout << "Genre: " << poetryBook.getGenre() << endl;
-    //poetryBook.display();
-    //cout << endl;
-
-    //// Marking one as finished
-    //poetryBook.markAsFinished();
-    //poetryBook.display();
-	return 0;
+    return 0;
 }

@@ -3,7 +3,7 @@
 
 Plant::Plant() 
 {
-    size = 0.01f;
+    size = 0.02f;
 }
 
 void Plant::setThePlant(const string& filename) 
@@ -64,7 +64,7 @@ Flower::Flower() : Plant() {}
 Tree::Tree() : Plant() {}
 Vine::Vine() : Plant() {}
 
-//overloading this for the derived class
+//overloading setThePlant for the derived class
 void Flower::setThePlant()
 {
     if (!plantImage.loadFromFile("flower.png")) {
@@ -91,3 +91,5 @@ void Vine::setThePlant()
     plantAppearance.setTexture(plantImage);
     plantAppearance.setScale(size, size);
 }
+
+
