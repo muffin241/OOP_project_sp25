@@ -109,12 +109,12 @@ public:
 	void display()override;
 };
 
-class CrimeFiction : public Fiction
+class Classic : public Fiction
 {
 private:
 
 public:
-	CrimeFiction(string, string, int, int, string, bool, int, int);
+	Classic(string, string, int, int, string, bool, int, int);
 
 	string getGenre()const override;
 	void display()override;

@@ -36,7 +36,7 @@ bool BookPlantPair::compareProgress(const BookPlantPair& second)const
 void BookPlantPair::display(RenderWindow& window, Font& font, float offsetY)
 {
     //plant
-    plant->setPosition(200, offsetY + 30);
+    plant->setPosition(600, offsetY + 20);
     plant->draw(window);
 
     //defining the color to use

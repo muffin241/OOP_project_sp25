@@ -5,6 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Network.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Books.h"
 #include "Plant.h"
@@ -28,9 +29,9 @@ int main()
     Garden myGarden(3);
 
    //create derived books
-    Books* book1 = new Fantasy("The Hobbit", "J.R.R. Tolkien", 310, 50, "In a hole in the ground there lived a hobbit.", false, 1, 5);
-    Books* book2 = new Poetry("The Hound of the Baskervilles", "Arthur Conan Doyle", 256, 180, "The world is full of obvious things.", false, 2, 4);
-    Books* book3 = new Nonfiction("Gone Girl", "Gillian Flynn", 422, 422, "Love makes you want to be a better man. But maybe love, real love, also gives you permission to just be the man you are.", true, 3, 5);
+    Books* book1 = new Classic("Oliver Twist", "Charles Dickens", 544, 300, "It is because I think so much of warm and sensitive hearts, that I would spare them from being wounded.", false, 1, 5);
+    Books* book2 = new Poetry("Devotions", "Mary Oliver", 480, 180, "Tell me, what is it you plan to do | with your one wild and precious life ? ", false, 2, 3);
+    Books* book3 = new Nonfiction("The Gift: Creativity and the Artist in the Modern World", "Lewis Hyde", 464, 464, "The spirit of a gift is kept alive by its constant donation.", true, 3, 5);
 
     //create plants
     Plant* plant1 = new Flower();
@@ -54,9 +55,9 @@ int main()
     book2->display();
     book3->display();
     //update
-    myGarden.updateReading(100, 0);  
-    myGarden.updateReading(256, 1);  
-    myGarden.updateReading(422, 2);  
+    myGarden.updateReading(350, 0);  
+    myGarden.updateReading(480, 1);  
+    myGarden.updateReading(464, 2);  
 
     //print book's details
     book1->display();
@@ -65,6 +66,18 @@ int main()
 
     //SFML window loop
     while (window.isOpen()) {
+        //bird sounds
+        sf::SoundBuffer buffer;
+        if (!buffer.loadFromFile("birds.wav")) {
+            std::cout << "Error loading bird sound!" << std::endl;
+            return -1;
+        }
+
+        sf::Sound birdSound;
+        birdSound.setBuffer(buffer);
+        birdSound.setLoop(true); 
+        birdSound.play();
+
         Event event;
         while (window.pollEvent(event)) {
             if (event.type == Event::Closed)

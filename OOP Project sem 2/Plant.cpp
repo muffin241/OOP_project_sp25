@@ -3,7 +3,7 @@
 
 Plant::Plant() 
 {
-    size = 0.02f;
+    size = 0.01f;
 }
 
 void Plant::setThePlant() 
@@ -36,23 +36,23 @@ void Plant::updateGrowth(int pagesRead, int totalPages)
     }
     if (ReadPercent == 100)
     {
-        size = 0.4f;
+        size = 0.06f;
     }
     else if (ReadPercent >= 90)
     {
-        size = 0.2f;
+        size = 0.05f;
     }
     else if (ReadPercent >= 70)
     {
-        size = 0.1f;
+        size = 0.04f;
     }
     else if (ReadPercent >= 50)
     {
-        size = 0.05f;
+        size = 0.03f;
     }
     else
     {
-        size = 0.03f;
+        size = 0.02f;
     }
 
     plantAppearance.setScale(size, size); 

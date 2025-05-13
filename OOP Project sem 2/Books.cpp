@@ -49,7 +49,7 @@ ScienceFiction::ScienceFiction(string ttl = { " " }, string writer = { " " }, in
 {
 }
 
-CrimeFiction::CrimeFiction(string ttl = { " " }, string writer = { " " }, int totalP = 0, int Pgsread = 0, string favLine = { " " }, bool isFin = 0, int ID = 0, int bookR = 0)
+Classic::Classic(string ttl = { " " }, string writer = { " " }, int totalP = 0, int Pgsread = 0, string favLine = { " " }, bool isFin = 0, int ID = 0, int bookR = 0)
 	: Fiction(ttl, writer, totalP, Pgsread, favLine, isFin, ID, bookR)
 {
 }
@@ -133,7 +133,7 @@ string ScienceFiction::getGenre()const
 	return "Science Fiction";
 }
 
-string CrimeFiction::getGenre()const
+string Classic::getGenre()const
 {
 	return "Crime Fiction";
 }
@@ -202,7 +202,7 @@ void ScienceFiction::display()
 	}
 }
 
-void CrimeFiction::display()
+void Classic::display()
 {
 	cout << bookId << ": '" << getTitle() << "' is written by " << getAuthor() << " and is based on crime fiction. You have read " << getPagesRead() << " of the " << gettotalPages() << " pages. " << (isFinished ? "You have finished the book. " : "You have not finished the book. ") << endl;
 	if (isFinished)
